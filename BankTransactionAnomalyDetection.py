@@ -102,3 +102,11 @@ print('\n Final Columns of X :',X.columns.values)
 print('\n Final Data Types of X :',X.dtypes)
 print('\n Final check for null values in X :',X.isnull().sum())
 print('\n Final check for duplicates values in X :',X.duplicated().sum())
+
+# Model Training
+i_forest = IsolationForest(n_estimators = 100, contamination = 0.05, random_state=42)
+i_forest.fit(X)
+
+predictions = i_forest.predict(X)
+df['Anomaly'] = predictions
+print('\n Anomaly:', df['Anomaly'].value_counts())
